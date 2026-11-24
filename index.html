@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Stage 1 - Progress Exam - Module 1 to 4 - OBISL Campus (Sinhala)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Noto Sans Sinhala', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8fafc;
+            color: #2b303a;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+
+        /* Custom LMS Button Styles */
+        .btn-lms-green {
+            background: linear-gradient(180deg, #1b7e24 0%, #14631b 100%);
+            color: #ffffff;
+            font-weight: 600;
+            border: 1px solid #0f4c14;
+            border-radius: 4px;
+            padding: 8px 18px;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        .btn-lms-green:hover, .btn-lms-green:active {
+            background: #14631b;
+        }
+
+        .btn-lms-blue-outline {
+            background-color: #ffffff;
+            border: 1px solid #0070f3;
+            color: #0070f3;
+            font-weight: 600;
+            border-radius: 4px;
+            padding: 8px 18px;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+            cursor: pointer;
+        }
+        .btn-lms-blue-outline:hover {
+            background-color: #f0f7ff;
+        }
+
+        .btn-lms-blue-solid {
+            background-color: #0070f3;
+            border: 1px solid #005bb5;
+            color: #ffffff;
+            font-weight: 600;
+            border-radius: 4px;
+            padding: 8px 20px;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+            cursor: pointer;
+        }
+        .btn-lms-blue-solid:hover {
+            background-color: #005bb5;
+        }
+
+        /* Initial Screen White Box before Continue button (shows Cancel when hovered) */
+        .btn-stealth-cancel {
+            background-color: #ffffff;
+            border: 1px solid #2563eb;
+            color: transparent;
+            font-weight: 500;
+            border-radius: 4px;
+            padding: 8px 18px;
+            min-width: 84px;
+            min-height: 40px;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .btn-stealth-cancel:hover, .btn-stealth-cancel:focus {
+            color: #333333;
+            background-color: #f8fafc;
+            border-color: #94a3b8;
+        }
+
+        /* Case Study Callout Box */
+        .case-study-box {
+            background-color: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            padding: 14px 16px;
+            margin: 14px auto;
+            max-width: 680px;
+            box-sizing: border-box;
+            line-height: 1.65;
+            font-size: 13.5px;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(1px);
+        }
+
+        /* Radio Option Label */
+        .option-label {
+            cursor: pointer;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            background-color: transparent;
+            transition: background 0.15s ease;
+            touch-action: manipulation;
+        }
+        .option-label:hover {
+            background-color: #f8fafc;
+        }
+
+        .custom-radio {
+            accent-color: #0070f3;
+            width: 18px;
+            height: 18px;
+            margin-top: 3px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-gray-800 antialiased relative pb-16">
+
+    <!-- LMS Breadcrumb Navigation Header -->
+    <header class="border-b border-gray-200 bg-white px-3 py-2.5 sm:px-6">
+        <div class="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-gray-600">
+            <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="text-blue-700 hover:underline cursor-pointer"><i class="fa-solid fa-house mr-1"></i> Portfolio</span>
+                <span>&gt;</span>
+                <span class="text-blue-700 hover:underline cursor-pointer truncate max-w-[160px] sm:max-w-none">Certificate in Business Management Skills</span>
+                <span>&gt;</span>
+                <span class="font-semibold text-gray-800 truncate max-w-[200px] sm:max-w-none">Stage 1 - Progress Exam - Module 1 to 4 (Sinhala)</span>
+            </div>
+            <div class="text-[11px] bg-gray-100 text-gray-600 px-2.5 py-1 rounded border border-gray-200 font-medium">
+                <i class="fa-solid fa-lock text-gray-500 mr-1"></i> PRACTICE EXAM - OBISL CAMPUS
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-4xl mx-auto px-3 sm:px-6 py-5 sm:py-6">
+
+        <!-- VIEW 1: INITIAL ATTEMPT CONFIRMATION -->
+        <section id="view-step-1" class="space-y-4 sm:space-y-6">
+            <h1 class="text-lg sm:text-2xl font-bold text-slate-800">
+                Stage 1-Progress Exam-Module 1 to 4 (Sinhala)-Click Here
+            </h1>
+
+            <!-- Orange Attempt Warning Bar -->
+            <div class="w-full bg-[#ea6c00] text-white px-4 py-3.5 rounded-md shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+                <div class="text-xs sm:text-[15px] font-medium leading-relaxed">
+                    Beware! Only one attempt remaining. By clicking the "Continue" button, a new attempt is recorded.
+                </div>
+                <div class="flex items-center gap-2.5 shrink-0">
+                    <!-- White box before Continue button that shows Cancel when hovered -->
+                    <button type="button" onclick="resetToInitial()" class="btn-stealth-cancel text-xs sm:text-sm" title="Cancel">
+                        Cancel
+                    </button>
+                    <button type="button" onclick="startExamDirectly()" class="btn-lms-green text-xs sm:text-sm px-5">
+                        Continue
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 2: LIVE EXAM INTERFACE WITH DESCRIPTION + QUESTION -->
+        <section id="view-step-2" class="hidden space-y-4">
+            
+            <!-- Top Orange Dismissible Warning Banner -->
+            <div id="top-sequential-banner" class="w-full bg-[#ea6c00] text-white px-4 py-2.5 rounded-md shadow-xs flex items-center justify-between gap-3 text-xs sm:text-sm">
+                <div class="flex items-center gap-2.5 font-medium">
+                    <i class="fa-solid fa-triangle-exclamation text-slate-900"></i>
+                    <span>Warning: Each question appears in a separate page with no possibility of going back to past questions.</span>
+                </div>
+                <button type="button" onclick="document.getElementById('top-sequential-banner').classList.add('hidden')" class="text-slate-900 hover:text-white transition px-1" aria-label="Dismiss warning">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+
+            <!-- Second Orange Remaining Time Banner -->
+            <div class="w-full bg-[#ea6c00] text-white px-4 py-2.5 rounded-md shadow-xs flex items-center justify-between gap-3 text-xs sm:text-sm">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-triangle-exclamation text-slate-900"></i>
+                    <span><strong>Remaining time:</strong> <span id="timer-display" class="font-mono font-semibold">15:00</span></span>
+                </div>
+            </div>
+
+            <!-- Description Card (Compact Sinhala Rules inside LMS card) -->
+            <div class="bg-white border border-gray-200 rounded-md p-4 sm:p-6 shadow-2xs">
+                <h2 class="text-base sm:text-lg font-bold text-slate-800 mb-3">Description</h2>
+                
+                <div class="exam-guidelines-container" style="max-width: 600px; width: 100%; margin: 0 auto; color: #222222; line-height: 1.45; padding: 8px; font-size: 13px;">
+                    <div style="background-color: #e6f0fa; border-left: 3px solid #0056b3; padding: 6px 10px; margin-bottom: 10px; color: #004085;"><strong>සටහන:</strong> විභාගය ආරම්භ කිරීමට පෙර මෙම නීති කියවන්න.</div>
+                    <div style="border-bottom: 1px solid #0056b3; padding-bottom: 8px; margin-bottom: 10px;">
+                        <div style="font-size: 15.5px; color: #0056b3; font-weight: bold;">මාර්ගගත විභාගය <span style="font-size: 12px; font-weight: normal;">(Open-Book Mini Case Studies)</span></div>
+                        <div style="font-size: 11px; color: #555555; font-weight: 600; text-transform: uppercase; margin-top: 2px;">සහතික පත්‍ර මට්ටම (Certificate Level) • 20% බර තැබීම</div>
+                    </div>
+                    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; padding: 6px 10px; margin-bottom: 10px; font-size: 12.5px;">
+                        <div><strong>කාල සීමාව:</strong> මිනිත්තු 15 (එක් සිද්ධි අධ්‍යයනයකට ~මිනිත්තු 3)</div>
+                        <div style="margin-top: 3px;"><strong>ව්‍යුහය:</strong> සිද්ධි අධ්‍යයන MCQ ප්‍රශ්න 5 (එක් නිවැරදි පිළිතුරක්)</div>
+                        <div style="margin-top: 3px;"><strong>ලකුණු ලබා දීම:</strong> ප්‍රශ්නයකට ලකුණු 4 (මුළු ලකුණු 20) • සමත් ලකුණු: 10 (50%)</div>
+                    </div>
+                    <ul style="padding-left: 16px; margin: 0 0 10px 0; color: #333333; list-style-type: disc;">
+                        <li style="margin-bottom: 4px;"><strong>විවෘත පොත් විභාගය (Open-Book):</strong> මොඩියුල සටහන් සහ ගණක යන්ත්‍රයක් (Calculator) භාවිත කිරීමට අවසර ඇත.</li>
+                        <li style="margin-bottom: 4px;"><strong>විභාග අඛණ්ඩතාව:</strong> අධීක්ෂණය සඳහා ඉදිරිපස කැමරාව ආවරණය නොකර තබා ගන්න. වෙනත් Browser Tab වෙත මාරු වීම හෝ සැක කටයුතු ක්‍රියාකාරකම් මඟින් විභාගය අවලංගු වේ.</li>
+                        <li style="margin-bottom: 0;"><strong>ප්‍රතිඵල:</strong> විභාගය Submit කළ සැණින් තිරය මත ක්ෂණිකව පෙන්වනු ලැබේ.</li>
+                    </ul>
+                    <div style="background-color: #fff8e6; border-left: 3px solid #ffc107; padding: 6px 10px; font-size: 12.5px; color: #856404;">විභාගය ආරම්භ කළ සැණින් කාල ගණනය ඇරඹෙන අතර එය නැවැත්වීමට හෝ Reset කිරීමට නොහැක. <strong>එක් උත්සාහයක් (1 attempt)</strong> පමණක් අවසර ඇත.</div>
+                </div>
+            </div>
+
+            <!-- Question Card (Single Question Per Page) -->
+            <form id="exam-form" onsubmit="event.preventDefault();" class="space-y-4">
+                <div id="questions-container"></div>
+
+                <!-- Wide Next > Button (Questions 1–4) -->
+                <div id="next-button-wrapper" class="flex justify-center pt-1">
+                    <button type="button" onclick="handleNextClick()" class="btn-lms-blue-outline w-full max-w-md py-2.5 text-sm font-semibold shadow-2xs">
+                        Next &gt;
+                    </button>
+                </div>
+
+                <!-- Bottom Right Cancel & Final Submission Buttons -->
+                <div class="flex items-center justify-end gap-2.5 pt-3 border-t border-gray-200">
+                    <button type="button" onclick="triggerCancelAttemptModal()" class="btn-lms-blue-outline text-xs sm:text-sm px-4">
+                        Cancel
+                    </button>
+                    <button type="button" onclick="handleFinalSubmissionClick()" class="btn-lms-green text-xs sm:text-sm px-5">
+                        Final Submission
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- VIEW 3: EXERCISE RESULTS SCREEN -->
+        <section id="view-step-3" class="hidden space-y-5">
+            <!-- Top Exercise Results Header Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-3">
+                <h1 class="text-xl sm:text-2xl font-bold text-slate-800">Exercise Results</h1>
+                <div class="flex items-center gap-2">
+                    <!-- Re-attempt / Back Button -->
+                    <button type="button" onclick="resetToInitial()" class="btn-lms-blue-outline text-xs sm:text-sm px-3" title="Re-attempt Practice Simulation">
+                        <i class="fa-solid fa-reply"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 1: Exam Title & Rules Description -->
+            <div class="bg-white border border-gray-200 rounded-md p-5 sm:p-6 shadow-2xs">
+                <h2 class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                    Stage 1-Progress Exam-Module 1 to 4 (Sinhala)-Click Here
+                </h2>
+                <div class="exam-guidelines-container" style="max-width: 600px; width: 100%; margin: 0 auto; color: #222222; line-height: 1.45; padding: 8px; font-size: 13px;">
+                    <div style="background-color: #e6f0fa; border-left: 3px solid #0056b3; padding: 6px 10px; margin-bottom: 10px; color: #004085;"><strong>සටහන:</strong> විභාගය ආරම්භ කිරීමට පෙර මෙම නීති කියවන්න.</div>
+                    <div style="border-bottom: 1px solid #0056b3; padding-bottom: 8px; margin-bottom: 10px;">
+                        <div style="font-size: 15.5px; color: #0056b3; font-weight: bold;">මාර්ගගත විභාගය <span style="font-size: 12px; font-weight: normal;">(Open-Book Mini Case Studies)</span></div>
+                        <div style="font-size: 11px; color: #555555; font-weight: 600; text-transform: uppercase; margin-top: 2px;">සහතික පත්‍ර මට්ටම (Certificate Level) • 20% බර තැබීම</div>
+                    </div>
+                    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; padding: 6px 10px; margin-bottom: 10px; font-size: 12.5px;">
+                        <div><strong>කාල සීමාව:</strong> මිනිත්තු 15 (එක් සිද්ධි අධ්‍යයනයකට ~මිනිත්තු 3)</div>
+                        <div style="margin-top: 3px;"><strong>ව්‍යුහය:</strong> සිද්ධි අධ්‍යයන MCQ ප්‍රශ්න 5 (එක් නිවැරදි පිළිතුරක්)</div>
+                        <div style="margin-top: 3px;"><strong>ලකුණු ලබා දීම:</strong> ප්‍රශ්නයකට ලකුණු 4 (මුළු ලකුණු 20) • සමත් ලකුණු: 10 (50%)</div>
+                    </div>
+                    <ul style="padding-left: 16px; margin: 0 0 10px 0; color: #333333; list-style-type: disc;">
+                        <li style="margin-bottom: 4px;"><strong>විවෘත පොත් විභාගය (Open-Book):</strong> මොඩියුල සටහන් සහ ගණක යන්ත්‍රයක් (Calculator) භාවිත කිරීමට අවසර ඇත.</li>
+                        <li style="margin-bottom: 4px;"><strong>විභාග අඛණ්ඩතාව:</strong> අධීක්ෂණය සඳහා ඉදිරිපස කැමරාව ආවරණය නොකර තබා ගන්න. වෙනත් Browser Tab වෙත මාරු වීම හෝ සැක කටයුතු ක්‍රියාකාරකම් මඟින් විභාගය අවලංගු වේ.</li>
+                        <li style="margin-bottom: 0;"><strong>ප්‍රතිඵල:</strong> විභාගය Submit කළ සැණින් තිරය මත ක්ෂණිකව පෙන්වනු ලැබේ.</li>
+                    </ul>
+                    <div style="background-color: #fff8e6; border-left: 3px solid #ffc107; padding: 6px 10px; font-size: 12.5px; color: #856404;">විභාගය ආරම්භ කළ සැණින් කාල ගණනය ඇරඹෙන අතර එය නැවැත්වීමට හෝ Reset කිරීමට නොහැක. <strong>එක් උත්සාහයක් (1 attempt)</strong> පමණක් අවසර ඇත.</div>
+                </div>
+            </div>
+
+            <!-- Card 2: PRACTICE EXAM - OBISL CAMPUS Gauge & Attempt Metadata -->
+            <div class="bg-white border border-gray-200 rounded-md p-5 sm:p-6 shadow-2xs">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-5">
+                    <h3 class="text-base sm:text-lg font-bold text-slate-800 uppercase tracking-tight">
+                        PRACTICE EXAM - OBISL CAMPUS
+                    </h3>
+                    <span id="result-pass-badge" class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-emerald-100 text-emerald-800 border border-emerald-300">
+                        PASSED (50%+ Threshold)
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <!-- Left: Semi-Circular Score Gauge -->
+                    <div>
+                        <div class="text-sm font-bold text-slate-700 mb-2">Total score</div>
+                        <div class="flex flex-col items-center sm:items-start">
+                            <svg id="score-gauge-svg" viewBox="0 0 260 155" class="w-64 h-40 overflow-visible">
+                                <!-- 4 Segmented Arcs: Red, Orange, Yellow, Green -->
+                                <path d="M 35 120 A 95 95 0 0 1 62.8 52.8" fill="none" stroke="#ef4444" stroke-width="11" stroke-linecap="butt" />
+                                <path d="M 66.5 49.3 A 95 95 0 0 1 127 25.1" fill="none" stroke="#f59e0b" stroke-width="11" stroke-linecap="butt" />
+                                <path d="M 133 25.1 A 95 95 0 0 1 193.5 49.3" fill="none" stroke="#eab308" stroke-width="11" stroke-linecap="butt" />
+                                <path d="M 197.2 52.8 A 95 95 0 0 1 225 120" fill="none" stroke="#16a34a" stroke-width="11" stroke-linecap="butt" />
+
+                                <!-- Min (0.00) and Max (20.00) Labels -->
+                                <g transform="translate(35, 134)">
+                                    <rect x="-24" y="-11" width="48" height="22" rx="11" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+                                    <text x="0" y="4" text-anchor="middle" font-size="11" font-weight="600" fill="#334155">0.00</text>
+                                </g>
+                                <g transform="translate(225, 134)">
+                                    <rect x="-26" y="-11" width="52" height="22" rx="11" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+                                    <text x="0" y="4" text-anchor="middle" font-size="11" font-weight="600" fill="#334155">20.00</text>
+                                </g>
+
+                                <!-- Rotating Needle Group -->
+                                <g id="gauge-needle-group" transform="translate(130, 120) rotate(0)">
+                                    <line x1="0" y1="0" x2="-78" y2="0" stroke="#0f172a" stroke-width="3" stroke-linecap="round" />
+                                    <circle cx="0" cy="0" r="7" fill="#0f172a" />
+                                </g>
+
+                                <!-- Earned Score Pill -->
+                                <g transform="translate(130, 146)">
+                                    <rect x="-46" y="-12" width="92" height="24" rx="12" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1" />
+                                    <text id="gauge-score-text" x="0" y="4" text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a">0.00 / 20.00</text>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Right: Start Timestamp, Duration, Attempt -->
+                    <div class="space-y-4 text-sm">
+                        <div>
+                            <div class="font-bold text-slate-800">Start</div>
+                            <div id="result-start-time" class="italic text-slate-600 mt-0.5">--/--/--, --:--</div>
+                        </div>
+                        <div>
+                            <div class="font-bold text-slate-800">Duration</div>
+                            <div id="result-duration-text" class="italic text-slate-600 mt-0.5">1 minute</div>
+                            <div class="text-slate-700 mt-0.5">Attempt: <span class="italic">1</span></div>
+                        </div>
+                        <div class="pt-1">
+                            <button type="button" onclick="downloadExamReview()" class="btn-lms-blue-outline text-xs sm:text-sm gap-2">
+                                <i class="fa-solid fa-file-pdf"></i>
+                                <span>Download Faced Questions &amp; Answers (PDF)</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- MODAL 1: UNANSWERED QUESTIONS POPUP -->
+    <div id="unanswered-modal" class="hidden fixed inset-0 z-50 modal-overlay flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-2xl max-w-md w-full p-6 border border-gray-200 relative">
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="text-lg font-bold text-slate-800">Unanswered Questions</h3>
+                <button type="button" onclick="closeModal('unanswered-modal')" class="text-[#ea6c00] hover:text-orange-700 transition p-1" aria-label="Close popup">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                You haven’t answered this question. Are you sure you want to continue? You won’t be able to return.
+            </p>
+            <div class="flex items-center justify-end gap-2.5">
+                <button type="button" onclick="closeModal('unanswered-modal')" class="btn-lms-blue-outline text-sm">
+                    Back to exercise
+                </button>
+                <button type="button" onclick="confirmSkipAndProceed()" class="btn-lms-blue-solid text-sm">
+                    Next
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: FINAL SUBMISSION CONFIRMATION POPUP -->
+    <div id="final-submission-modal" class="hidden fixed inset-0 z-50 modal-overlay flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-2xl max-w-md w-full p-6 border border-gray-200 relative">
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="text-lg font-bold text-slate-800">Final Submission</h3>
+                <button type="button" onclick="closeModal('final-submission-modal')" class="text-[#ea6c00] hover:text-orange-700 transition p-1" aria-label="Close popup">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                Warning! After submitting the exercise, your answers will be recorded as final. Proceed?
+            </p>
+            <div class="flex items-center justify-end gap-2.5">
+                <button type="button" onclick="closeModal('final-submission-modal')" class="btn-lms-blue-outline text-sm">
+                    Back to exercise
+                </button>
+                <button type="button" onclick="confirmFinalSubmission()" class="btn-lms-green text-sm px-5">
+                    Final Submission
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: EXAM INTEGRITY / CANCEL ATTEMPT POPUP -->
+    <div id="cancellation-modal" class="hidden fixed inset-0 z-50 modal-overlay flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-2xl max-w-sm w-full p-6 text-center border border-gray-200">
+            <div class="mx-auto w-12 h-12 flex items-center justify-center rounded-full bg-orange-100 text-orange-500 text-2xl mb-3">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="text-base font-bold text-slate-800 mb-1.5">Warning!</h3>
+            <p id="cancellation-modal-text" class="text-gray-600 text-sm mb-5">
+                Your attempt will be canceled.
+            </p>
+            <div class="flex items-center justify-center gap-2.5">
+                <button type="button" id="btn-cancel-abort" onclick="closeModal('cancellation-modal')" class="btn-lms-blue-outline text-sm hidden">
+                    Back to exercise
+                </button>
+                <button type="button" onclick="confirmCancellation()" class="btn-lms-blue-solid text-sm w-full">
+                    OK
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * QUESTION POOLS CONFIGURATION (SINHALA VERSION WITH RATIONALES)
+         * Pool 1: Module 1 (Business & Management Principles)
+         * Pool 2: Module 2 (Financial Literacy for Managers)
+         * Pool 3: Module 3 (Business Ethics & Professionalism)
+         * Pool 4: Module 4 (Strategic Management & Planning)
+         * Pool 5 (Wild Card): Cross-Module Applied Scenarios
+         */
+        const questionPools = {
+            module1: [
+                {
+                    poolId: "M1-Q1",
+                    moduleTag: "මොඩියුලය 1: ව්‍යාපාර සහ කළමනාකරණ මූලධර්ම",
+                    moduleTagEn: "Module 1: Business & Management Principles",
+                    questionText: "මන්දගාමී අනුමැති ස්ථර නැවත ඇති නොකර අධීක්ෂකවරුන්ට වඩාත් හොඳින් සහාය වන කළමනාකරණ ගැලපුම කුමක්ද?",
+                    scenario: "කුරුණෑගල පිහිටි ආහාර සැකසුම් කර්මාන්තශාලාවක නිෂ්පාදන සේවකයින් 180 දෙනෙකු පේළි අධීක්ෂකවරුන් 12 දෙනෙකු යටතේ සේවය කරන අතර, නිෂ්පාදන අංශය සහ කර්මාන්තශාලා ප්‍රධානියා අතර වාර්තාකරණ ස්ථර දෙකක් පවතී. මෑතකදී හඳුන්වා දුන් තත්ත්ව සහතික රීතියකට අනුව, අත්හදා බැලීමේ වාරවලදී සිදු කරන සුළු වට්ටෝරු වෙනස්කම් සතිපතා අනුමැති එනතුරු නොසිට කෙටි දෛනික සාකච්ඡාවලදී සටහන් කර සමාලෝචනය කළ යුතු විය. එමඟින් අත්හදා බැලීමේ සිට දියත් කිරීම දක්වා කාලය දින 14 සිට දින 4 දක්වා අඩු වී දෝෂ අනුපාතයද පහත වැටුණි. කෙසේ වෙතත්, කාර්යබහුල සේවා මුරවලදී යන්ත්‍ර පරීක්ෂා කිරීම සහ ගැටලු විසඳීම සමඟින් නව අධීක්ෂකවරුන් දෙදෙනෙකුට එක් අයෙකුට සේවකයින් 15 දෙනෙකු බැගින් මඟ පෙන්වීම අභියෝගයක් වී ඇත.",
+                    options: [
+                        "පැතලි ව්‍යුහය එලෙසම පවත්වා ගනිමින්, සාමාන්‍ය නිෂ්පාදන ගැටලු සඳහා පැහැදිලි තීරණ සීමාවන් සහ ව්‍යුහගත මඟ පෙන්වීමේ මෙවලම් ලබා දීම.",
+                        "සෑම අත්හදා බැලීමේ වට්ටෝරු වෙනස්කමක්ම ක්‍රියාත්මක කිරීමට පෙර ද්විත්ව අනුමැතිය අවශ්‍ය වන පරිදි මධ්‍යම කළමනාකරණ අනුමැති ස්ථර තුනක් එක් කිරීම.",
+                        "අධීක්ෂකවරුන්ගේ වැඩ බර අඩු කිරීම සඳහා දෛනික සාකච්ඡා ඉවත් කර නැවත සතිපතා සාමූහික අනුමැති ක්‍රමයට යාම.",
+                        "කාර්යබහුල නිෂ්පාදන වේලාවන්හිදී සියලුම ගැටලු විසඳීම සහ සේවක මඟ පෙන්වීම කර්මාන්තශාලා ප්‍රධානියාට පමණක් පැවරීම."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "පැතලි ආයතනික ව්‍යුහය එලෙසම පවත්වා ගනිමින් පැහැදිලි තීරණ සීමාවන් සහ ව්‍යුහගත මඟ පෙන්වීමේ මෙවලම් ලබා දීමෙන් මන්දගාමී ධූරාවලි ස්ථර ඇති නොකර අධීක්ෂකවරුන් සවිබල ගැන්විය හැක."
+                },
+                {
+                    poolId: "M1-Q2",
+                    moduleTag: "මොඩියුලය 1: ව්‍යාපාර සහ කළමනාකරණ මූලධර්ම",
+                    moduleTagEn: "Module 1: Business & Management Principles",
+                    questionText: "A ඒකකය සහ C ඒකකය අතර කාර්ය සාධන පරතරයට හේතු වන මූලික කළමනාකරණ වෙනස කුමක්ද?",
+                    scenario: "කොළඹ පිහිටි මෘදුකාංග ක්‍රියාත්මක කිරීමේ ආයතනයක කලාපීය ඒකක තුනක් ඇත. A ඒකකය නිරන්තරයෙන් ව්‍යාපෘති නියමිත වේලාවට සහ අයවැය තුළ නිම කරන අතර, C ඒකකය අඛණ්ඩව භාරදීම් දින තුනක් මඟ හැර ඇත. සමාලෝචනයේදී මෙහෙයුම් අධ්‍යක්ෂවරයා නිරීක්ෂණය කරන්නේ A ඒකකයේ නායකයා පැහැදිලි කෙටි කාලීන සන්ධිස්ථාන තබා, බාධක ඉක්මනින් ඉවත් කර, කාර්යයන් පෙළගැස්වීමේ හිමිකාරිත්වය කණ්ඩායම් සාමාජිකයින්ට ලබා දෙන බවත්, C ඒකකයේ නායකයා සෑම සුළු කාර්යයක්ම අධික ලෙස පාලනය කරමින් අවසන් සතිය දක්වාම ඉලක්ක අපැහැදිලිව තබන බවත්ය.",
+                    options: [
+                        "C ඒකකයේ අපැහැදිලි අපේක්ෂාවන් සහ අධික පාලනයට සාපේක්ෂව, A ඒකකයේ ඵලදායී මඟ පෙන්වීම, ආසන්න ඉලක්ක පිළිබඳ පැහැදිලි බව සහ සේවක සවිබල ගැන්වීම.",
+                        "කාර්තුමය විගණනයේදී C ඒකකයට සාපේක්ෂව A ඒකකයේ ව්‍යවස්ථාපිත අනුකූලතා වාර්තා වඩාත් නිවැරදි වීම.",
+                        "A ඒකකයේ කෙටි සැලසුම් කාලසීමාවට සාපේක්ෂව C ඒකකය දිගු ස්ථාවර වාර්ෂික සැලසුම් චක්‍ර භාවිත කිරීම.",
+                        "කාර්යයන් හරහා කණ්ඩායම් සාමාජිකයින්ට සහයෝගයෙන් කටයුතු කිරීම වළක්වන පටු පාලන පරාසයක් A ඒකකයේ පැවතීම."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "පැහැදිලි කෙටි කාලීන ඉලක්ක, බාධක ඉවත් කිරීම සහ සේවකයින්ට වගකීම් පැවරීම (Empowerment) අධික ක්ෂුද්‍ර පාලනයට (Micromanagement) වඩා ඉහළ කාර්ය සාධනයක් ඇති කරයි."
+                },
+                {
+                    poolId: "M1-Q3",
+                    moduleTag: "මොඩියුලය 1: ව්‍යාපාර සහ කළමනාකරණ මූලධර්ම",
+                    moduleTagEn: "Module 1: Business & Management Principles",
+                    questionText: "ඉහළ ආදාන-නිමැවුම් පරිවර්තනය සහ උදෑසන සාකච්ඡාවලින් පසු වැඩි වූ කාර්ය වේගය යන සංයෝජනයෙන් වඩාත් හොඳින් පැහැදිලි වන මූලධර්මය කුමක්ද?",
+                    scenario: "ගාල්ලේ රෝහල් රසායනාගාරයක් දිනකට සම්මත ආදාන ඒකක 250ක් භාවිතා කරමින් දිනකට සාමාන්‍ය නිමැවුම් ලෙස නිමි පරීක්ෂණ 275ක් සිදු කරන අතර, දැඩි නිරවද්‍යතා පරීක්ෂාවන්ද පවත්වා ගනී. පසුගිය මාසයේදී, රසායනාගාර කාර්මිකයින්ට කාර්ය ප්‍රවාහ බාධක බෙදා ගැනීමට සහ සාම්පල ලේබල් කිරීමේ වැඩිදියුණු කිරීම් යෝජනා කිරීමට හැකි වන පරිදි කෙටි උදෑසන සාකච්ඡා කළමනාකාරිත්වය විසින් හඳුන්වා දෙන ලදී. පරීක්ෂණ නිරවද්‍යතාවයට හානියක් නොවී කටයුතු නිම කිරීමේ වේගය 12%කින් වැඩි විය.",
+                    options: [
+                        "සම්පත් කාර්යක්ෂමතාව සමඟ සහභාගීත්ව සන්නිවේදනය සහ සේවක කැපවීම ඒකාබද්ධ කිරීමෙන් මෙහෙයුම් කාර්ය සාධනය වැඩි දියුණු වේ.",
+                        "මෙහෙයුම් නිමැවුම රඳා පවතින්නේ කණ්ඩායම් සන්නිවේදනයට හෝ චිත්ත ධෛර්යයට වඩා භෞතික රසායනාගාර ඉඩකඩ මත පමණි.",
+                        "සැලසුම් කළ සම්පත් ආදානවලට වඩා නිමැවුම ඉහළ නැංවීම සඳහා නිරවද්‍යතා පරීක්ෂාවන් ඉවත් කිරීම අවශ්‍ය වේ.",
+                        "තාක්ෂණික පරීක්ෂණ නිරවද්‍යතාවය ඉතා වැදගත් වන සෑම විටම දැඩි ඉහළ සිට පහළට හුදකලා පාලනයක් අවශ්‍ය වේ."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "සම්පත් ඵලදායිතාවය සමඟ සේවක අදහස්වලට ඉඩ දෙන සහභාගීත්ව සන්නිවේදනය (Participative Communication) ඒකාබද්ධ කිරීම ගුණාත්මකභාවය රැකගනිමින් වේගය වැඩි කරයි."
+                },
+                {
+                    poolId: "M1-Q4",
+                    moduleTag: "මොඩියුලය 1: ව්‍යාපාර සහ කළමනාකරණ මූලධර්ම",
+                    moduleTagEn: "Module 1: Business & Management Principles",
+                    questionText: "මෙම වෙනස බෙදාහැරීමේ මධ්‍යස්ථානයේ සැලසුම්කරණය සහ පාලනය ශක්තිමත් කරන්නේ කෙසේද?",
+                    scenario: "වත්තල පිහිටි ඊ-වාණිජ්‍ය භාණ්ඩ බෙදාහැරීමේ මධ්‍යස්ථානයකට උත්සව අලෙවි සමයේදී ඉල්ලුමේ තියුණු වැඩිවීම් සහ හදිසි ප්‍රවාහන ප්‍රමාදයන්ට මුහුණ දීමට සිදු වේ. මීට පෙර, ගබඩා කණ්ඩායම වසරකට වරක් ඇණවුම් සැකසුම් කාලසටහන් සැලසුම් කළ අතර, මාසික කළමනාකරණ රැස්වීම් එනතුරු විධිමත් දැනුම්දීම් රඳවා ගත්තේය. දැන්, තත්කාලීන ඇණවුම් පරිමාව සහ ප්‍රවාහන ධාරිතාව මත පදනම්ව ප්‍රමුඛතා සකස් කිරීම සඳහා බෙදාහැරීමේ නායකයින් සතිපතා මෙහෙයුම් සමාලෝචන පවත්වති.",
+                    options: [
+                        "වෙනස්වන තත්ත්වයන්ට අනුව කාලෝචිත ගැලපීම් කිරීමට ඉඩ සලසමින්, ස්ථිතික සහ මන්දගාමී ප්‍රතිපෝෂණ චක්‍ර වෙනුවට කෙටි සමාලෝචන කාල පරතරයන් ආදේශ කරයි.",
+                        "වාර්ෂික සැලසුම ලියූ පසු කිසිදු කාර්ය සාධන නිරීක්ෂණයක් හෝ මෙහෙයුම් ඉලක්කයක් අවශ්‍ය නොවන බවට පත් කරයි.",
+                        "වසර තුළ මෙහෙයුම් කණ්ඩායම් කිසි විටෙකත් කාලසටහන් සංශෝධනය නොකරන පරිදි සැලසුම් කාලසීමාව දීර්ඝ කරයි.",
+                        "වසර අවසාන මූල්‍ය ගිණුම් අවසන් කිරීම දක්වා ගබඩා සම්ප්‍රේෂකයින් කාර්ය සාධන මිනුම්දඬුවලින් වෙන් කරයි."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "ඵලදායී මෙහෙයුම් පාලනය සඳහා කාලෝචිත ප්‍රතිපෝෂණ අවශ්‍ය වේ; සතිපතා සමාලෝචන මඟින් වෙනස් වන ඉල්ලුමට අනුව සම්පත් ඉක්මනින් නැවත පෙළගැස්වීමට හැකි වේ."
+                }
+            ],
+            module2: [
+                {
+                    poolId: "M2-Q6",
+                    moduleTag: "මොඩියුලය 2: කළමනාකරුවන් සඳහා මූල්‍ය සාක්ෂරතාවය",
+                    moduleTagEn: "Module 2: Financial Literacy for Managers",
+                    questionText: "සමච්ඡේද ලක්ෂ්‍යයට (break-even point) ළඟා වීමට බේකරිය මසකට පාන් ගෙඩි කීයක් අලෙවි කළ යුතුද?",
+                    scenario: "නුවරඑළියේ විශේෂිත බේකරියක් විසින් විශේෂ පාන් ගෙඩියක් රුපියල් 800 බැගින් මිල කර ඇත. එක් පාන් ගෙඩියකට පිටි, යීස්ට් සහ ඇසුරුම් සඳහා රුපියල් 300ක් වැය වන අතර, මාසික ස්ථාවර කුලී, උදුන් සහ වැටුප් ලබන කාර්ය මණ්ඩලය සඳහා මුළු පිරිවැය රුපියල් 400,000කි.",
+                    options: [
+                        "පාන් ගෙඩි 800ක්",
+                        "පාන් ගෙඩි 500ක්",
+                        "පාන් ගෙඩි 400ක්",
+                        "පාන් ගෙඩි 1,250ක්"
+                    ],
+                    correctAnswer: 0,
+                    rationale: "ඒකක දායකත්ව ආන්තිකය = විකුණුම් මිල (රු. 800) − විචල්‍ය පිරිවැය (රු. 300) = රු. 500. සමච්ඡේද ඒකක ප්‍රමාණය = ස්ථාවර පිරිවැය (රු. 400,000) ÷ දායකත්ව ආන්තිකය (රු. 500) = පාන් ගෙඩි 800."
+                },
+                {
+                    poolId: "M2-Q7",
+                    moduleTag: "මොඩියුලය 2: කළමනාකරුවන් සඳහා මූල්‍ය සාක්ෂරතාවය",
+                    moduleTagEn: "Module 2: Financial Literacy for Managers",
+                    questionText: "මෙම අවස්ථාවේදී ගිණුම්කරණ ආදායම සමඟම මුදල් ලැබෙන කාලයද කළමනාකරු නිරීක්ෂණය කළ යුත්තේ මන්ද?",
+                    scenario: "මහරගම මුද්‍රණාලයක් ඇණවුමක් නිම කර දින 60ක ණය කොන්දේසි යටතේ ප්‍රකාශන ආයතනයකට රුපියල් 2,000,000ක ඉන්වොයිසියක් නිකුත් කරයි. මුද්‍රණාලය මෙම මාසයේ ආදායම ලෙස රුපියල් 2,000,000ක් වාර්තා කළද, කඩදාසි සැපයුම්කරුවන්ට සහ විදුලි බිල්පත් සති දෙකකින් ගෙවීමට නියමිතව තිබියදී තවමත් කිසිදු මුදලක් ලැබී නොමැත.",
+                    options: [
+                        "ආසන්න බැඳීම් ගෙවීමට අවශ්‍ය මුදල් ලැබීම් ලැබිය යුතු ණය මුදල් නිසා ප්‍රමාද විය හැකි අතරම, උපචිත ආදායම හොඳ තත්ත්වයක පෙනෙන්නට තිබිය හැකි බැවිනි.",
+                        "එකතු නොකළ ණය ඉන්වොයිසි නිකුත් කළ දිනයේදීම ස්වයංක්‍රීයව බැංකු මුදල් වැඩි කරන බැවිනි.",
+                        "පාරිභෝගිකයින් දින 60ක ණය ඉන්වොයිසි පියවූ පසු පමණක් විදුලි සහ අමුද්‍රව්‍ය බිල්පත් ගෙවනු ලබන බැවිනි.",
+                        "සෑම මෙහෙයුම් මාසයකම ආදායම් ප්‍රකාශනයේ ආදායම ශුද්ධ මුදල් චලනයට සමාන වන බැවිනි."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "ලාභදායීතාවය සහ මුදල් ප්‍රවාහය (Cash Flow) එකිනෙකට වෙනස් වේ; දින 60ක ණය කාලය නිසා කෙටිකාලීන බිල්පත් ගෙවීමට මුදල් හිඟයක් (Liquidity Gap) ඇති විය හැක."
+                },
+                {
+                    poolId: "M2-Q8",
+                    moduleTag: "මොඩියුලය 2: කළමනාකරුවන් සඳහා මූල්‍ය සාක්ෂරතාවය",
+                    moduleTagEn: "Module 2: Financial Literacy for Managers",
+                    questionText: "ණය පියවීමෙන් වහාම පසු ආයතනයේ මූල්‍ය තත්ත්වය කුමක්ද?",
+                    scenario: "ශීත-දාම ලොජිස්ටික්ස් ආයතනයක් මාසය ආරම්භ කරන්නේ රුපියල් 18,000,000ක වගකීම් සහ රුපියල් 12,000,000ක හිමිකම්වලින් සමන්විත රුපියල් 30,000,000ක වත්කම් සමඟිනි. මාසය තුළදී, පවතින මුදල් රුපියල් 3,000,000ක් භාවිතයෙන් බැංකු ණයකින් රුපියල් 3,000,000ක් පියවයි.",
+                    options: [
+                        "වත්කම් රුපියල් 27,000,000ක් වන අතර, වගකීම් රුපියල් 15,000,000ක් වන අතර, හිමිකම් රුපියල් 12,000,000 ලෙස පවතී.",
+                        "වත්කම් රුපියල් 30,000,000ක් වන අතර, වගකීම් රුපියල් 15,000,000ක් වන අතර, හිමිකම් රුපියල් 15,000,000 දක්වා ඉහළ යයි.",
+                        "වත්කම් රුපියල් 27,000,000 දක්වා අඩු වන අතර, වගකීම් රුපියල් 18,000,000 ලෙස පවතින අතර, හිමිකම් රුපියල් 9,000,000 දක්වා පහත වැටේ.",
+                        "වගකීම් රුපියල් 18,000,000 ලෙස වෙනස් නොවී පවතින අතරම වත්කම් රුපියල් 24,000,000 දක්වා පහත වැටේ."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "මුදල්වලින් ණය ගෙවීමේදී වත්කම් රු. 3,000,000කින් අඩු වන අතර (රු. 27M), වගකීම්ද රු. 3,000,000කින් අඩු වේ (රු. 15M); හිමිකම් රු. 12M ලෙස නොවෙනස්ව පවතී."
+                },
+                {
+                    poolId: "M2-Q9",
+                    moduleTag: "මොඩියුලය 2: කළමනාකරුවන් සඳහා මූල්‍ය සාක්ෂරතාවය",
+                    moduleTagEn: "Module 2: Financial Literacy for Managers",
+                    questionText: "මෙම රුපියල් 180,000ක අහිතකර පිරිවැය විචල්‍යතාවය කළමනාකරුවෙකු අර්ථකථනය කළ යුත්තේ කෙසේද?",
+                    scenario: "ඇසුරුම් සැපයුම්කරුවෙකු අපේක්ෂිත යැවීමේ පරිමාව මත පදනම්ව මාසික ප්‍රවාහන පිරිවැය සඳහා රුපියල් 900,000ක් අයවැය කළේය. ඉහළ ආන්තිකයක් සහිත කඩිනම් ඇණවුම් රුපියල් 1,200,000ක ආදායමක් ජනනය කළ අතිරේක කුරියර් ගමන් හේතුවෙන් සැබෑ ප්‍රවාහන පිරිවැය රුපියල් 1,080,000ක් විය.",
+                    options: [
+                        "නිවැරදි කිරීමේ පාලනයන් පිළිබඳ තීරණය කිරීමට පෙර, ලාභදායී පරිමා වර්ධනය මඟින් අතිරේක ප්‍රවාහන පිරිවැය ඇති වූයේද යන්න ඇගයීම.",
+                        "ඇණවුම් පරිමාව හෝ ආදායම් බලපෑම පරීක්ෂා නොකර අයවැයට වඩා වැඩි ඕනෑම පිරිවැයක් ස්වයංක්‍රීයව නාස්තියක් ලෙස සැලකීම.",
+                        "අයවැයගත සංඛ්‍යා පිරිවැය පාලනයට බල නොපාන බැවින් විචල්‍යතා විශ්ලේෂණය සම්පූර්ණයෙන්ම නොසලකා හැරීම.",
+                        "ලාභදායී කඩිනම් ඇණවුම් අවලංසුවුවද ඊළඟ මාසයේ සියලුම කුරියර් බෙදාහැරීම් කපා හැරීම."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "නම්‍යශීලී අයවැයකරණයට (Flexible Budgeting) අනුව, අතිරේක පිරිවැය ලාභදායී අමතර විකුණුම් පරිමාවක් නිසා ඇති වූවක්දැයි පළමුව ඇගයිය යුතුය."
+                }
+            ],
+            module3: [
+                {
+                    poolId: "M3-Q11",
+                    moduleTag: "මොඩියුලය 3: ව්‍යාපාරික ආචාරධර්ම සහ වෘත්තීයවේදය",
+                    moduleTagEn: "Module 3: Business Ethics & Professionalism",
+                    questionText: "අපක්ෂපාතීත්වය සහ වෘත්තීය අඛණ්ඩතාව ආරක්ෂා කර ගැනීමට ව්‍යාපෘති කළමනාකරු ප්‍රතිචාර දැක්විය යුත්තේ කෙසේද?",
+                    scenario: "එම සැපයුම්කරු ලංසු තැබීමට අදහස් කරන ප්‍රධාන පහසුකම් වැඩිදියුණු කිරීමක් සඳහා සමාගම ටෙන්ඩර් කැඳවීමට සුළු මොහොතකට පෙර, දිගුකාලීන සැපයුම්කරුවෙකු විසින් සියලු වියදම් ගෙවන විදේශීය නිවාඩු නිකේතන චාරිකාවකට සහභාගී වන ලෙස ඉංජිනේරු ව්‍යාපෘති කළමනාකරුවෙකුගෙන් ඉල්ලා සිටියි.",
+                    options: [
+                        "ටෙන්ඩර් සාධාරණත්වයට හානියක් නොවන පරිදි චාරිකාව ප්‍රතික්ෂේප කර, සමාගමේ තෑගි/පරස්පරතා මාර්ගෝපදේශ යටතේ එම ඉදිරිපත් කිරීම වාර්තා කිරීම.",
+                        "පසුව ලංසු සාධාරණව ලකුණු කරන බවට ව්‍යාපෘති කළමනාකරු පොරොන්දු වන තාක් කල් නිහඬව චාරිකාව පිළිගැනීම.",
+                        "ගමන් වියදම් පියවා ගැනීම සඳහා තරමක් වැඩි ලංසුවක් ඉදිරිපත් කරන ලෙස සැපයුම්කරුගෙන් ඉල්ලා සිටිමින් චාරිකාව පිළිගැනීම.",
+                        "පසුව සැපයුම්කරුගේ ලංසුව පිළිබඳව කිසිවෙකු ප්‍රශ්න නොකරන පරිදි ප්‍රසම්පාදන සගයින්ගෙන් චාරිකාව රහසිගතව තබා ගැනීම."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "ටෙන්ඩර් ක්‍රියාවලියක් අතරතුර සැපයුම්කරුවෙකුගෙන් වටිනා ත්‍යාග හෝ චාරිකා පිළිගැනීම ලැදියාවන් අතර ගැටුමක් (Conflict of Interest) ඇති කරයි; එය ප්‍රතික්ෂේප කර වාර්තා කිරීම වෘත්තීය අඛණ්ඩතාව රකියි."
+                },
+                {
+                    poolId: "M3-Q12",
+                    moduleTag: "මොඩියුලය 3: ව්‍යාපාරික ආචාරධර්ම සහ වෘත්තීයවේදය",
+                    moduleTagEn: "Module 3: Business Ethics & Professionalism",
+                    questionText: "කළමනාකාරිත්වයේ ප්‍රවේශයේ ඇති ප්‍රධාන ආචාරධාර්මික දෝෂය කුමක්ද?",
+                    scenario: "මධ්‍යම ප්‍රමාණයේ නිෂ්පාදන සමාගමකට සිය ආචාරධාර්මික තත්ත්වය වැඩිදියුණු කිරීමට අවශ්‍යය. කළමනාකාරිත්වය ගස් සිටුවීමේ ඡායාරූප ඇතුළත් දිලිසෙන තිරසාරත්ව අත්පත්‍රිකාවක් ප්‍රකාශයට පත් කළද, ඇසුරුම් පේළිවල ආරක්ෂක ආවරණ මඟහැරීම සහ අතිකාල වැටුප් අඩුවෙන් ගෙවීම දිගටම සිදු කරයි.",
+                    options: [
+                        "සේවක ආරක්ෂාව, සාධාරණ සැලකීම සහ මෙහෙයුම් අඛණ්ඩතාව පිළිබඳ මූලික වගකීම් උල්ලංඝනය කරමින් මතුපිටින් පෙනෙන ප්‍රසිද්ධ ප්‍රතිරූපයක් මත රඳා පැවතීම.",
+                        "කෙටිකාලීන කොටස් මිල ලාභ කෙරෙහි පමණක් අවධානය යොමු කරනවා වෙනුවට පාරිසරික දැනුවත්භාවය සඳහා ආයෝජනය කිරීම.",
+                        "නෛතික ආරවුල් ඇති වන තෙක් බලා නොසිට සමාගම් භාවිතයන් පිළිබඳ ප්‍රසිද්ධ වාර්තා පළ කිරීම.",
+                        "ප්‍රජා මුලපිරීම්වලටද සහාය දක්වන අතරම සේවකයින්ට සාධාරණව සැලකීම."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "සැබෑ ව්‍යාපාරික ආචාරධර්ම ආරම්භ වන්නේ සේවක ආරක්ෂාව සහ සාධාරණ වැටුප් වැනි මූලික වගකීම් ඉටු කිරීමෙනි; බාහිර ප්‍රචාරණ මඟින් අභ්‍යන්තර අසාධාරණකම් වසන් කළ නොහැක."
+                },
+                {
+                    poolId: "M3-Q13",
+                    moduleTag: "මොඩියුලය 3: ව්‍යාපාරික ආචාරධර්ම සහ වෘත්තීයවේදය",
+                    moduleTagEn: "Module 3: Business Ethics & Professionalism",
+                    questionText: "කනිෂ්ඨ විශ්ලේෂකයාට වඩාත්ම සුදුසු වෘත්තීය පියවර කුමක්ද?",
+                    scenario: "අධ්‍යක්ෂ මණ්ඩල ඉදිරිපත් කිරීමකට පෙර කාර්තුමය බිල්පත් අතිශයෝක්තියෙන් දක්වන බවක් පෙනෙන ගිණුම්කරණ සටහනක් කනිෂ්ඨ විශ්ලේෂකයෙකුට පෙනේ. මෙම ගැටලුව මතු කිරීමෙන් දෙපාර්තමේන්තු ප්‍රධානියා අමනාප විය හැකි යැයි විශ්ලේෂකයා කනස්සල්ලට පත් වුවද, අවංක වාර්තාකරණය සඳහා සමාගමේ කැපවීම ඔහුට සිහිපත් වේ.",
+                    options: [
+                        "නිසි අභ්‍යන්තර හෝ අනුකූලතා නාලිකා හරහා එම විෂමතාවය කරුණු සහිතව ඉදිරිපත් කර, එම කනස්සල්ල පිළිබඳව ප්‍රවේශමෙන් ලේඛනගත කිරීම.",
+                        "ඉදිරිපත් කිරීම සුමටව සිදු වන පරිදි අතිශයෝක්තියෙන් දැක්වූ සටහනට ගැළපෙන ලෙස ආධාරක පැතුරුම්පත් වෙනස් කිරීම.",
+                        "අභ්‍යන්තර වාර්තා පරීක්ෂා කිරීමට පෙර සත්‍යාපනය නොකළ චෝදනා ප්‍රසිද්ධ සමාජ මාධ්‍යවල පළ කිරීම.",
+                        "නිරවද්‍යතාවය සඳහා කනිෂ්ඨ කාර්ය මණ්ඩලයට කිසිදු වගකීමක් නොමැති බැවින් එම විෂමතාවය සදහටම නොසලකා හැරීම."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "මූල්‍ය වාර්තාකරණයේ අවංකභාවය රැකීම සඳහා සාක්ෂි නිසි ලෙස ලේඛනගත කර අභ්‍යන්තර විගණන හෝ අනුකූලතා (Compliance) නාලිකා හරහා වාර්තා කළ යුතුය."
+                },
+                {
+                    poolId: "M3-Q14",
+                    moduleTag: "මොඩියුලය 3: ව්‍යාපාරික ආචාරධර්ම සහ වෘත්තීයවේදය",
+                    moduleTagEn: "Module 3: Business Ethics & Professionalism",
+                    questionText: "සාධාරණ සැලකීම සහ පාර්ශ්වකරුවන් කෙරෙහි ආචාරධාර්මික වගකීම වඩාත් හොඳින් පිළිබිඹු කරන තීරණය කුමක්ද?",
+                    scenario: "දෝෂ සහිත ආදේශක විචල්‍යයක් නිසා ස්වයංක්‍රීය ණය ලකුණු රීතියක් මඟින් යම් දිස්ත්‍රික්කයක සුදුසුකම් ලත් අයදුම්කරුවන් ප්‍රතික්ෂේප කරන බව පාරිභෝගික මූල්‍ය ආයතනයක් සොයා ගනී. මෙම රීතිය පවත්වා ගැනීමෙන් කෙටිකාලීන ණය ප්‍රතික්ෂේප කිරීමේ වේගය වැඩි වන අතර, එය නිවැරදි කිරීමෙන් ක්‍රියාත්මක කිරීම සති දෙකකින් ප්‍රමාද වේ.",
+                    options: [
+                        "දන්නා දෝෂයක් හේතුවෙන් අයදුම්කරුවන්ට හානි වනවා වෙනුවට ඔවුන් සාධාරණව හා නිවැරදිව ඇගයීමට ලක් වන පරිදි දෝෂ සහිත ලකුණු රීතිය තාවකාලිකව නතර කිරීම හෝ නිවැරදි කිරීම.",
+                        "ඉංජිනේරු කාලයෙන් සති දෙකක් ඉතිරි වන බැවින් කෙසේ හෝ දෝෂ සහිත රීතිය ක්‍රියාත්මක කිරීම.",
+                        "අමතර පරීක්ෂණ මඟහරවා ගැනීම සඳහා අනුකූලතා සමාලෝචකයින්ගෙන් දිස්ත්‍රික් ප්‍රතික්ෂේප කිරීමේ රටාව සැඟවීම.",
+                        "ලකුණු දෝෂය හෙළි නොකර බලපෑමට ලක් වූ අයදුම්කරුවන්ගෙන් වැඩි ගාස්තු අය කිරීම."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "පාරිභෝගිකයින්ට සාධාරණව සැලකීම කෙටිකාලීන වේගයට වඩා වැදගත් වේ; දෝෂ සහිත රීතිය නිවැරදි කිරීම මඟින් අසාධාරණ ප්‍රතික්ෂේප කිරීම් වළක්වයි."
+                }
+            ],
+            module4: [
+                {
+                    poolId: "M4-Q16",
+                    moduleTag: "මොඩියුලය 4: උපායමාර්ගික කළමනාකරණය සහ සැලසුම්කරණය",
+                    moduleTagEn: "Module 4: Strategic Management & Planning",
+                    questionText: "ඇන්සොෆ් වර්ධන රාමුව යටතේ, (1) සහ (2) යන විකල්ප පිළිවෙලින් වර්ගීකරණය කරන්නේ කෙසේද?",
+                    scenario: "පොල්-වතුර අපනයනකරුවෙකු දැනට අලෙවි කරන්නේ දේශීය සුපිරි වෙළඳසැල්වල පමණක් වන අතර වර්ධනය වීමට අපේක්ෂා කරයි. කළමනාකාරිත්වය තීරණය කරමින් සිටින්නේ: (1) දැනට පවතින දේශීය සුපිරි වෙළඳසැල්වල වැඩි පොල්-වතුර ප්‍රමාණයක් අලෙවි කිරීමට තවදුරටත් උත්සාහ කරනවාද, නැතහොත් (2) දැනට පවතින පොල්-වතුර නිෂ්පාදන පෙළ සමඟ අපනයන වෙළඳපොළවලට ඇතුළු වීමට ඇසුරුම් සහ බෙදාහැරීම අනුවර්තනය කරනවාද යන්නයි.",
+                    options: [
+                        "(1) සඳහා වෙළඳපොළ විනිවිද යාම (Market Penetration) සහ (2) සඳහා වෙළඳපොළ සංවර්ධනය (Market Development).",
+                        "(1) සඳහා විවිධාංගීකරණය (Diversification) සහ (2) සඳහා නිෂ්පාදන සංවර්ධනය (Product Development).",
+                        "(1) සඳහා වෙළඳපොළ සංවර්ධනය සහ (2) සඳහා විවිධාංගීකරණය.",
+                        "(1) සඳහා නිෂ්පාදන සංවර්ධනය සහ (2) සඳහා වෙළඳපොළ විනිවිද යාම."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "පවතින වෙළඳපොළේ පවතින නිෂ්පාදනය වැඩිපුර විකිණීම Market Penetration වන අතර, පවතින නිෂ්පාදනය නව අපනයන වෙළඳපොළකට හඳුන්වා දීම Market Development වේ."
+                },
+                {
+                    poolId: "M4-Q17",
+                    moduleTag: "මොඩියුලය 4: උපායමාර්ගික කළමනාකරණය සහ සැලසුම්කරණය",
+                    moduleTagEn: "Module 4: Strategic Management & Planning",
+                    questionText: "මෙම පුළුල් බාහිර සාධක වඩාත් හොඳින් වර්ගීකරණය කරන උපායමාර්ගික විශ්ලේෂණ මෙවලම කුමක්ද?",
+                    scenario: "මධ්‍යම ප්‍රමාණයේ සංචාරක ආයතනයක් සිය තුන් අවුරුදු සැලැස්ම සකස් කිරීමට පෙර බාහිර සාධක සමාලෝචනය කරයි. ගුවන් ගාස්තු බදු ඉහළ යාම, පරිසර-හිතකාමී සංචාර සඳහා වැඩිවන කැමැත්ත, නව මාර්ගගත වෙන්කරවා ගැනීමේ මෙවලම් සහ ව්‍යාපාරික ණය පොලී අනුපාත ඉහළ යාම එහිදී සටහන් වේ.",
+                    options: [
+                        "PESTLE විශ්ලේෂණය (දේශපාලනික/ආර්ථික/සමාජීය/තාක්ෂණික/නෛතික/පාරිසරික සාධක).",
+                        "බාහිර සාධක සොයා නොබලා ඇන්සොෆ් න්‍යාසය පමණක් භාවිත කිරීම.",
+                        "සමච්ඡේද ලක්ෂ්‍ය සූත්‍රය.",
+                        "ද්විත්ව-සටහන් ලෙජර් සැසඳීම."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "බදු (දේශපාලනික), පොලී අනුපාත (ආර්ථික), පරිසර-හිතකාමී නැඹුරුව (සමාජීය/පාරිසරික) සහ මාර්ගගත මෙවලම් (තාක්ෂණික) යන සාධක PESTLE විශ්ලේෂණය මඟින් ඇගයීමට ලක් කෙරේ."
+                },
+                {
+                    poolId: "M4-Q18",
+                    moduleTag: "මොඩියුලය 4: උපායමාර්ගික කළමනාකරණය සහ සැලසුම්කරණය",
+                    moduleTagEn: "Module 4: Strategic Management & Planning",
+                    questionText: "මෙම සන්නාමය වඩාත් හොඳින් විස්තර කරන සාමාන්‍ය තරඟකාරී ස්ථානගත කිරීම කුමක්ද?",
+                    scenario: "කොළඹ පිහිටි විශේෂිත පාවහන් සන්නාමයක් කැපවූ මිනුම් උපදේශන සහ ජීවිත කාලය පුරාම අලුත්වැඩියා සේවා සමඟින් විශේෂයෙන් සකස් කළ සම් පාවහන් නිෂ්පාදනය කරන අතර, මහා පරිමාණ ලාභ සෙරෙප්පු සමඟ තරඟ කරනවා වෙනුවට ලැදි පාරිභෝගික පදනමකට වාරික මිල ගණන් යටතේ අලෙවි කරයි.",
+                    options: [
+                        "අඩු පිරිවැයකට වඩා සුවිශේෂී නිෂ්පාදන ගුණාත්මකභාවය, විශේෂිත නිමාව සහ සේවාව මත ගොඩනඟන ලද විභේදනය (Differentiation / Focused Differentiation).",
+                        "ගුණාත්මකභාවය අඩු කර විශේෂිත නිමාව ඉවත් කිරීම මඟින් මෙහෙයවනු ලබන පිරිවැය නායකත්වය.",
+                        "වට්ටම් ලබා දෙන මහා පරිමාණ තරඟකරුවන් අවධානයකින් තොරව අනුකරණය කිරීම.",
+                        "සම්බන්ධ නොවන බර කාර්මික යන්ත්‍රෝපකරණ ක්ෂේත්‍රයට විවිධාංගීකරණය වීම."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "සුවිශේෂී ගුණාත්මකභාවය සහ පුද්ගලාරෝපිත සේවාව තුළින් වාරික මිලක් අය කිරීම පෝටර්ගේ Differentiation / Focused Differentiation උපායමාර්ගයයි."
+                },
+                {
+                    poolId: "M4-Q19",
+                    moduleTag: "මොඩියුලය 4: උපායමාර්ගික කළමනාකරණය සහ සැලසුම්කරණය",
+                    moduleTagEn: "Module 4: Strategic Management & Planning",
+                    questionText: "පාරිභෝගික ජීවිත කාලීන වටිනාකම සහ අත්පත් කර ගැනීමේ පිරිවැය අතර අනුපාතය (CLV/CAC) කුමක්ද, එයින් පෙන්නුම් කරන්නේ කුමක්ද?",
+                    scenario: "දායකත්ව ආහාර-කට්ටල සේවාවකට නව ග්‍රාහකයෙකු අත්පත් කර ගැනීමට අලෙවිකරණය සඳහා රුපියල් 15,000ක් වැය වන අතර, රඳවා ගැනීම පහත වැටීමට පෙර සාමාන්‍ය ග්‍රාහකයෙකුගෙන් රුපියල් 60,000ක ජීවිත කාලීන දළ ලාභයක් ජනනය වේ.",
+                    options: [
+                        "ජීවිත කාලීන වටිනාකම අත්පත් කර ගැනීමේ පිරිවැයට වඩා සැලකිය යුතු ලෙස ඉහළ බව පෙන්වන 4.0ක අනුපාතයකි.",
+                        "අත්පත් කර ගැනීමේ පිරිවැය ජීවිත කාලීන වටිනාකමට වඩා හතර ගුණයකින් වැඩි බව පෙන්වන 0.25ක අනුපාතයකි.",
+                        "අත්පත් කර ගන්නා සෑම පාරිභෝගිකයෙකුගෙන්ම ව්‍යාපාරයට පාඩු සිදු වන බව පෙන්වන 1.5ක අනුපාතයකි.",
+                        "අලෙවිකරණ වියදම ශුන්‍ය බව පෙන්වන 6.0ක අනුපාතයකි."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "CLV ÷ CAC = රු. 60,000 ÷ රු. 15,000 = 4.0. 3:1ට වඩා වැඩි අනුපාතයක් ශක්තිමත් සහ ලාභදායී පාරිභෝගික ආර්ථිකයක් පෙන්නුම් කරයි."
+                }
+            ],
+            wildcard: [
+                {
+                    poolId: "M1-Q5",
+                    moduleTag: "මොඩියුලය 1: ව්‍යාපාර සහ කළමනාකරණ මූලධර්ම",
+                    moduleTagEn: "Module 1: Cross-Functional Alignment",
+                    questionText: "මෙම ගැටලුවලින් බොහොමයක් වළක්වා ගැනීමට තිබූ ආයතනික භාවිතය කුමක්ද?",
+                    scenario: "කලාපීය සිල්ලර බැංකුවක් ශාඛා හරහා නව ඩිජිටල් ලියාපදිංචි වීමේ පහසුකමක් හඳුන්වා දෙමින් සිටී. තොරතුරු තාක්ෂණ (IT) කණ්ඩායම ශාඛා පාරිභෝගික සේවා නිලධාරීන්ගෙන් විමසීමකින් තොරව මාස අටක් තිස්සේ හුදකලාව එම පද්ධතිය ගොඩනැඟීය. එය දියත් කළ විට, ලේඛන සත්‍යාපනයේදී පාරිභෝගිකයින් නිතරම ගැටලුවලට මුහුණ දුන් අතර, එමඟින් ශාඛා කාර්ය මණ්ඩලයට දත්ත නැවත ඇතුළත් කිරීමට සහ අපහසුතාවයට පත් පාරිභෝගිකයින් හැසිරවීමට සිදු විය.",
+                    options: [
+                        "සම්පූර්ණ දියත් කිරීමට පෙර පාරිභෝගික ගැටලු විසඳා ගැනීම සඳහා පුනරාවර්තන පරීක්ෂාවලදී ඉදිරිපෙළ ශාඛා කාර්ය මණ්ඩලය සහ IT කණ්ඩායම මුල් අවධියේදීම සම්බන්ධ කර ගැනීම.",
+                        "දීපව්‍යාප්ත අලෙවිකරණය ආරම්භ වන තෙක් IT කණ්ඩායම පාරිභෝගික සේවා කණ්ඩායම්වලින් හුදකලාව තබා ගැනීම.",
+                        "ශාඛා නිලධාරීන් සහ IT සංවර්ධකයින් අතර ධූරාවලි අනුමැති අදියර සංඛ්‍යාව වැඩි කිරීම.",
+                        "කිසිදු පරිශීලක ප්‍රතිපෝෂණයකින් තොරව IT කණ්ඩායම කේතීකරණය සඳහා ගත කරන මාස ගණනින් පමණක් සාර්ථකත්වය මැනීම."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "හරස්-ක්‍රියාකාරී සහයෝගීතාවය (Cross-functional Collaboration) මඟින් පද්ධතිය සම්පූර්ණයෙන් දියත් කිරීමට පෙර ප්‍රායෝගික ගැටලු හඳුනාගෙන විසඳා ගත හැක."
+                },
+                {
+                    poolId: "M2-Q10",
+                    moduleTag: "මොඩියුලය 2: කළමනාකරුවන් සඳහා මූල්‍ය සාක්ෂරතාවය",
+                    moduleTagEn: "Module 2: Cost Structure & Risk",
+                    questionText: "අපනයන ඇණවුම් අනපේක්ෂිත ලෙස පහත වැටුණහොත් නිෂ්පාදකයා ආරක්ෂා කිරීමට උපකාරී වන පිරිවැය හැසිරීමේ ලක්ෂණය කුමක්ද?",
+                    scenario: "හලාවත කොහු-පාපිසි නිෂ්පාදකයෙකු ඉදිරි වසර තුළ අවිනිශ්චිත අපනයන ඇණවුම්වලට මුහුණ දෙයි. මූල්‍ය ප්‍රධානියා විශේෂිත යන්ත්‍රයක් මාසිකව රුපියල් 600,000ක ස්ථාවර ගෙවීමකට බදු ගැනීම, ස්ථාවර බදු පිරිවැයක් නොමැතිව එක් පාපිසි යන්ත්‍රයකට රුපියල් 450 බැගින් පිටතින් වියවා ගැනීම සමඟ සසඳයි.",
+                    options: [
+                        "නිමැවුම පහත වැටෙන විට විචල්‍ය පිරිවැය පහත වැටෙන අතර, පරිමාව අඩු විට ස්ථාවර බැඳීම් මඟහරවා ගනී.",
+                        "අලෙවිය එක් ඒකකයකින් හෝ පහත වැටෙන සෑම විටම ස්ථාවර පිරිවැය ස්වයංක්‍රීයව ශුන්‍ය වේ.",
+                        "පාපිසි කීයක් අලෙවි වුවද ඉහළ ස්ථාවර පිරිවැය සමච්ඡේද අවදානම ඉවත් කරයි.",
+                        "නිෂ්පාදනය වැඩි වන විට මුළු විචල්‍ය පිරිවැය අඩු වන අතරම ඒකක විචල්‍ය පිරිවැය නියතව පවතී."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "අවිනිශ්චිත ඉල්ලුමක් ඇති විට විචල්‍ය පිරිවැය ව්‍යුහයක් (Variable Cost Structure) නිෂ්පාදනය අඩු වන විට ස්ථාවර පිරිවැය පාඩුවලින් ආයතනය ආරක්ෂා කරයි."
+                },
+                {
+                    poolId: "M3-Q15",
+                    moduleTag: "මොඩියුලය 3: ව්‍යාපාරික ආචාරධර්ම සහ වෘත්තීයවේදය",
+                    moduleTagEn: "Module 3: Confidentiality & Data Ethics",
+                    questionText: "HR කළමනාකරු කළ යුත්තේ කුමක්ද?",
+                    scenario: "මානව සම්පත් (HR) කළමනාකරුවෙකු සමාගමකින් ඉවත් වී තරඟකාරී ආයතනයකට එක් වේ. නව සමාගමේ පළමු සතිය තුළදී, පෙර සේවායෝජකයාගේ වැටුප් පරාස, අපේක්ෂක ලැයිස්තු සහ රහස්‍ය ප්‍රතිව්‍යුහගත කිරීමේ සැලසුම් සගයෙකු විසින් ඉල්ලා සිටී.",
+                    options: [
+                        "රහස්‍යභාවය සහ වෘත්තීය ප්‍රමිතීන්ට ගරු කරමින්, පෙර සේවායෝජකයාගේ රහස්‍ය තොරතුරු බෙදා ගැනීම ප්‍රතික්ෂේප කිරීම.",
+                        "නව සමාගමේ වේගවත් උසස්වීමක් වෙනුවට රහස්‍ය ලේඛන බෙදා ගැනීම.",
+                        "එම හුවමාරුව අවිධිමත් එකක් ලෙස පෙනෙන පරිදි පෞද්ගලික විද්‍යුත් තැපැල් ගිණුමකින් ලේඛන යැවීම.",
+                        "එක් ප්‍රතිපත්ති සටහනක වැටුප් පරාස පැහැදිලිව සඳහන් කර නොතිබූ බැවින් අපේක්ෂක සම්බන්ධතා විස්තර බෙදා ගැනීම."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "රැකියාවෙන් ඉවත් වූ පසුවද පෙර සේවායෝජකයාගේ රහස්‍ය දත්ත සහ ව්‍යාපාරික රහස් ආරක්ෂා කිරීම වෘත්තීය ආචාරධර්ම සහ නෛතික වගකීමකි."
+                },
+                {
+                    poolId: "M4-Q20",
+                    moduleTag: "මොඩියුලය 4: උපායමාර්ගික කළමනාකරණය සහ සැලසුම්කරණය",
+                    moduleTagEn: "Module 4: SMART Strategic Objectives",
+                    questionText: "මෙම ඉලක්කය උපායමාර්ගික ක්‍රියාත්මක කිරීම සඳහා ඵලදායී වන්නේ මන්ද?",
+                    scenario: "ලොජිස්ටික්ස් සමාගමක් \"මාර්ග සම්ප්‍රේෂණ මෘදුකාංග වැඩිදියුණු කර මධ්‍යස්ථාන සම්බන්ධීකාරකවරුන් නැවත පුහුණු කිරීම මඟින්, ඔක්තෝබර් 31 වන විට සියලුම පළාත් හරහා ප්‍රමාද වන දේශීය බෙදාහැරීම් 14% සිට 5%ට වඩා අඩු මට්ටමකට අඩු කිරීමේ\" ඉලක්කයක් තබයි.",
+                    options: [
+                        "නිශ්චිත ඉලක්කයකට සහ කාලසීමාවකට සම්බන්ධ වූ පැහැදිලි ක්‍රියාමාර්ග සමඟ එය විශේෂිත, මැනිය හැකි සහ කාලානුරූපී වන බැවිනි.",
+                        "කණ්ඩායම්වලට නම්‍යශීලීව ප්‍රගතිය අර්ථකථනය කළ හැකි වන පරිදි කිසිදු සංඛ්‍යාත්මක ඉලක්කයක් මඟහරින බැවිනි.",
+                        "කණ්ඩායම්වලට කාලසටහන් පීඩනයක් ඇති නොවන පරිදි නියමිත දින ඉවත් කරන බැවිනි.",
+                        "මෙහෙයුම් වගවීමකින් තොරව අපැහැදිලි සටන් පාඨයක් මඟින් උපායමාර්ගය ප්‍රතිස්ථාපනය කරන බැවිනි."
+                    ],
+                    correctAnswer: 0,
+                    rationale: "SMART නිර්ණායක (Specific, Measurable, Achievable, Relevant, Time-bound) සපුරාලීම නිසා උපායමාර්ගික ප්‍රගතිය නිවැරදිව මැන බැලිය හැක."
+                }
+            ]
+        };
+
+        let activeQuestions = [];
+        let currentQuestionIndex = 0;
+        let currentStep = 1;
+        let timerSeconds = 15 * 60; // 15 minutes matching description rules
+        let timerInterval = null;
+        let selectedAnswers = {};
+        let examStartTime = null;
+
+        // Fisher-Yates shuffle utility
+        function shuffleArray(array) {
+            const arr = array.slice();
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // Draw 1 random question from a pool and randomize its 4 options
+        function drawRandomQuestion(pool, displayNumber) {
+            const randomIndex = Math.floor(Math.random() * pool.length);
+            const rawQuestion = pool[randomIndex];
+
+            const optionObjects = rawQuestion.options.map((text, idx) => ({
+                cleanText: text.replace(/^[A-D]\.\s*/, ''),
+                isCorrect: idx === rawQuestion.correctAnswer
+            }));
+
+            const shuffledOptions = shuffleArray(optionObjects);
+            const newCorrectIndex = shuffledOptions.findIndex(opt => opt.isCorrect);
+
+            return {
+                id: displayNumber,
+                poolId: rawQuestion.poolId,
+                moduleTag: rawQuestion.moduleTag,
+                moduleTagEn: rawQuestion.moduleTagEn,
+                questionText: rawQuestion.questionText,
+                scenario: rawQuestion.scenario,
+                options: shuffledOptions.map(opt => opt.cleanText),
+                correctAnswer: newCorrectIndex,
+                rationale: rawQuestion.rationale
+            };
+        }
+
+        // Assemble 5 randomized questions (1 per module + 1 from the 5th pool)
+        function generateExamQuestions() {
+            activeQuestions = [
+                drawRandomQuestion(questionPools.module1, 1),
+                drawRandomQuestion(questionPools.module2, 2),
+                drawRandomQuestion(questionPools.module3, 3),
+                drawRandomQuestion(questionPools.module4, 4),
+                drawRandomQuestion(questionPools.wildcard, 5)
+            ];
+            currentQuestionIndex = 0;
+        }
+
+        // Render Single Current Question into View 2
+        function renderCurrentQuestion() {
+            const container = document.getElementById('questions-container');
+            const nextBtnWrapper = document.getElementById('next-button-wrapper');
+            const total = activeQuestions.length;
+            const q = activeQuestions[currentQuestionIndex];
+            if (!q) return;
+
+            let optionsHtml = '';
+            q.options.forEach((optText, optIndex) => {
+                const isChecked = selectedAnswers[q.id] === optIndex ? 'checked' : '';
+                optionsHtml += `
+                    <label class="option-label text-xs sm:text-sm text-gray-800">
+                        <input type="radio" name="question_${q.id}" value="${optIndex}" ${isChecked} onchange="selectOption(${q.id}, ${optIndex})" class="custom-radio">
+                        <span class="leading-relaxed">${optText}</span>
+                    </label>
+                `;
+            });
+
+            container.innerHTML = `
+                <div class="bg-white border border-gray-200 rounded-md p-4 sm:p-6 shadow-2xs space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="text-sm sm:text-base font-bold text-slate-800">
+                            Question ${currentQuestionIndex + 1} / ${total} <span class="font-normal text-gray-600 text-xs sm:text-sm">(Multiple Choice (Single Answer)) — 4 grades</span>
+                        </div>
+                        <span class="text-[11px] font-semibold text-[#0056b3] bg-[#e6f0fa] px-2.5 py-0.5 rounded border border-[#b8daff]">
+                            ${q.moduleTag}
+                        </span>
+                    </div>
+                    
+                    <p class="text-xs sm:text-[14.5px] font-semibold text-slate-800 leading-relaxed">
+                        ${q.questionText}
+                    </p>
+
+                    <!-- Centered Case Study Callout Box -->
+                    <div class="case-study-box">
+                        <span class="block text-[10.5px] font-bold text-[#0056b3] uppercase tracking-wider mb-1.5">
+                            සිද්ධි අධ්‍යයනය (CASE STUDY SCENARIO)
+                        </span>
+                        <p class="m-0 text-xs sm:text-[13.5px] text-slate-700 leading-relaxed">
+                            ${q.scenario}
+                        </p>
+                    </div>
+
+                    <!-- Options List -->
+                    <div class="space-y-1.5 pt-1">
+                        ${optionsHtml}
+                    </div>
+
+                    <!-- Clear Choice Button -->
+                    <div class="flex justify-end pt-2">
+                        <button type="button" onclick="clearChoice(${q.id})" class="btn-lms-blue-outline text-xs px-3 py-1.5 min-h-[34px]">
+                            ✕ Clear Choice
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            // Show Next > button on Questions 1–4; hide on Question 5 (Final Submission only)
+            if (currentQuestionIndex < total - 1) {
+                nextBtnWrapper.classList.remove('hidden');
+            } else {
+                nextBtnWrapper.classList.add('hidden');
+            }
+        }
+
+        // Next > button handler: shows Unanswered Questions modal if skipped, else advances
+        function handleNextClick() {
+            const currentQ = activeQuestions[currentQuestionIndex];
+            if (!currentQ) return;
+
+            if (selectedAnswers[currentQ.id] === undefined) {
+                openModal('unanswered-modal');
+            } else {
+                advanceToNextQuestion();
+            }
+        }
+
+        function confirmSkipAndProceed() {
+            closeModal('unanswered-modal');
+            advanceToNextQuestion();
+        }
+
+        function advanceToNextQuestion() {
+            if (currentQuestionIndex < activeQuestions.length - 1) {
+                currentQuestionIndex++;
+                renderCurrentQuestion();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Final Submission button handler: opens Final Submission modal
+        function handleFinalSubmissionClick() {
+            openModal('final-submission-modal');
+        }
+
+        function confirmFinalSubmission() {
+            closeModal('final-submission-modal');
+            submitExam();
+        }
+
+        function selectOption(questionId, optionIndex) {
+            selectedAnswers[questionId] = optionIndex;
+        }
+
+        function clearChoice(questionId) {
+            delete selectedAnswers[questionId];
+            renderCurrentQuestion();
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        function showStep(stepNum) {
+            currentStep = stepNum;
+            document.getElementById('view-step-1').classList.add('hidden');
+            document.getElementById('view-step-2').classList.add('hidden');
+            document.getElementById('view-step-3').classList.add('hidden');
+
+            document.getElementById(`view-step-${stepNum}`).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Clicking Continue transitions directly to Exam Screen with Description + Question 1/5
+        function startExamDirectly() {
+            examStartTime = new Date();
+            timerSeconds = 15 * 60;
+            selectedAnswers = {};
+            generateExamQuestions();
+            renderCurrentQuestion();
+            showStep(2);
+            startTimer();
+        }
+
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                timerSeconds--;
+                updateTimerDisplay();
+
+                if (timerSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    submitExam();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timerSeconds / 60);
+            const seconds = timerSeconds % 60;
+            const formatted = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            document.getElementById('timer-display').textContent = formatted;
+        }
+
+        function triggerCancelAttemptModal() {
+            document.getElementById('cancellation-modal-text').textContent = "Are you sure you want to cancel your attempt? All progress will be lost.";
+            document.getElementById('btn-cancel-abort').classList.remove('hidden');
+            openModal('cancellation-modal');
+        }
+
+        function triggerViolationModal() {
+            document.getElementById('cancellation-modal-text').textContent = "Screen switching or suspicious activity detected. Your attempt will be canceled.";
+            document.getElementById('btn-cancel-abort').classList.add('hidden');
+            openModal('cancellation-modal');
+        }
+
+        function confirmCancellation() {
+            closeModal('cancellation-modal');
+            resetToInitial();
+        }
+
+        // Anti-cheat tab switch monitoring
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && currentStep === 2) {
+                triggerViolationModal();
+            }
+        });
+
+        function formatStartTimestamp(dateObj) {
+            if (!dateObj) return "11/24/26, 12:35PM";
+            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const day = String(dateObj.getDate()).padStart(2, '0');
+            const year = String(dateObj.getFullYear()).slice(-2);
+            let hours = dateObj.getHours();
+            const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            return `${month}/${day}/${year}, ${hours}:${minutes}${ampm}`;
+        }
+
+        function submitExam() {
+            clearInterval(timerInterval);
+
+            let correctCount = 0;
+            activeQuestions.forEach(q => {
+                if (selectedAnswers[q.id] === q.correctAnswer) {
+                    correctCount++;
+                }
+            });
+
+            const marksPerQuestion = 4;
+            const totalMarks = activeQuestions.length * marksPerQuestion; // 20.00
+            const earnedMarks = correctCount * marksPerQuestion;
+            const passed = earnedMarks >= 10;
+
+            // Update Semi-Circular Gauge Needle
+            const ratio = Math.min(Math.max(earnedMarks / totalMarks, 0), 1);
+            const rotationDeg = Math.round(ratio * 180);
+            const needleGroup = document.getElementById('gauge-needle-group');
+            if (needleGroup) {
+                needleGroup.setAttribute('transform', `translate(130, 120) rotate(${rotationDeg})`);
+            }
+            document.getElementById('gauge-score-text').textContent = `${earnedMarks.toFixed(2)} / ${totalMarks.toFixed(2)}`;
+
+            // Update Start Time & Duration
+            document.getElementById('result-start-time').textContent = formatStartTimestamp(examStartTime);
+            const elapsedSeconds = Math.max(60, (15 * 60) - timerSeconds);
+            const elapsedMinutes = Math.max(1, Math.round(elapsedSeconds / 60));
+            document.getElementById('result-duration-text').textContent = `${elapsedMinutes} minute${elapsedMinutes > 1 ? 's' : ''}`;
+
+            // Update Pass/Fail Badge
+            const passBadge = document.getElementById('result-pass-badge');
+            if (passed) {
+                passBadge.textContent = `PASSED (${earnedMarks}/${totalMarks} Marks)`;
+                passBadge.className = "px-3 py-1 rounded-full text-xs font-bold uppercase bg-emerald-100 text-emerald-800 border border-emerald-300";
+            } else {
+                passBadge.textContent = `FAILED (${earnedMarks}/${totalMarks} Marks — Pass Mark: 10)`;
+                passBadge.className = "px-3 py-1 rounded-full text-xs font-bold uppercase bg-rose-100 text-rose-800 border border-rose-300";
+            }
+
+            showStep(3);
+        }
+
+        // Generate and Download Formatted PDF Review Sheet (Using Canvas rendering for crisp Sinhala Unicode glyphs)
+        async function downloadExamReview() {
+            if (!activeQuestions || activeQuestions.length === 0) return;
+
+            if (!window.jspdf || !window.jspdf.jsPDF) {
+                window.print();
+                return;
+            }
+
+            if (document.fonts && document.fonts.ready) {
+                await document.fonts.ready;
+            }
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
+            const margin = 12;
+            const contentWidth = pageWidth - margin * 2;
+            let y = 14;
+
+            const letters = ['A', 'B', 'C', 'D'];
+            let correctCount = 0;
+            activeQuestions.forEach(q => {
+                if (selectedAnswers[q.id] === q.correctAnswer) correctCount++;
+            });
+            const earnedMarks = correctCount * 4;
+            const totalMarks = activeQuestions.length * 4;
+            const passed = earnedMarks >= 10;
+            const timestampStr = formatStartTimestamp(examStartTime);
+
+            // Render high-DPI Unicode text block via offscreen canvas so Sinhala complex ligatures render cleanly in PDF
+            function addUnicodeBlockToPdf(text, widthMm, options = {}) {
+                const {
+                    fontSizePx = 22,
+                    fontWeight = '400',
+                    color = '#1e293b',
+                    bgColor = null,
+                    borderColor = null,
+                    paddingPx = 12,
+                    lineHeightMult = 1.48
+                } = options;
+
+                const scale = 3.6; // ~260 DPI crispness
+                const canvasWidth = Math.round(widthMm * scale);
+                const innerWidth = canvasWidth - paddingPx * 2;
+                const fontStr = `${fontWeight} ${fontSizePx}px "Noto Sans Sinhala", sans-serif`;
+
+                const measureCanvas = document.createElement('canvas');
+                const mCtx = measureCanvas.getContext('2d');
+                mCtx.font = fontStr;
+
+                // Word wrap supporting Sinhala spaces and long tokens
+                const paragraphs = String(text).split('\n');
+                const lines = [];
+                paragraphs.forEach(para => {
+                    const words = para.split(' ');
+                    let currentLine = '';
+                    words.forEach(word => {
+                        const testLine = currentLine ? `${currentLine} ${word}` : word;
+                        if (mCtx.measureText(testLine).width <= innerWidth) {
+                            currentLine = testLine;
+                        } else {
+                            if (currentLine) lines.push(currentLine);
+                            currentLine = word;
+                        }
+                    });
+                    if (currentLine) lines.push(currentLine);
+                });
+
+                const lineHeightPx = Math.round(fontSizePx * lineHeightMult);
+                const canvasHeight = Math.max(lineHeightPx + paddingPx * 2, lines.length * lineHeightPx + paddingPx * 2);
+
+                const canvas = document.createElement('canvas');
+                canvas.width = canvasWidth;
+                canvas.height = canvasHeight;
+                const ctx = canvas.getContext('2d');
+
+                if (bgColor) {
+                    ctx.fillStyle = bgColor;
+                    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+                }
+                if (borderColor) {
+                    ctx.strokeStyle = borderColor;
+                    ctx.lineWidth = 2;
+                    ctx.strokeRect(1, 1, canvasWidth - 2, canvasHeight - 2);
+                }
+
+                ctx.font = fontStr;
+                ctx.fillStyle = color;
+                ctx.textBaseline = 'top';
+
+                lines.forEach((line, idx) => {
+                    ctx.fillText(line, paddingPx, paddingPx + idx * lineHeightPx);
+                });
+
+                const blockHeightMm = canvasHeight / scale;
+                if (y + blockHeightMm > pageHeight - 14) {
+                    doc.addPage();
+                    y = 14;
+                }
+
+                const imgData = canvas.toDataURL('image/png');
+                doc.addImage(imgData, 'PNG', margin, y, widthMm, blockHeightMm);
+                y += blockHeightMm + 1.5;
+            }
+
+            // Header Banner
+            doc.setFillColor(0, 86, 179);
+            doc.rect(margin, y, contentWidth, 22, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(12.5);
+            doc.text('OBISL CAMPUS - PRACTICE MOCK EXAM REVIEW (SINHALA)', margin + 4, y + 6.5);
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(9);
+            doc.text('Stage 1 - Progress Exam (Modules 1 to 4) | Faced Questions, Options & Rationale', margin + 4, y + 12.5);
+            doc.text(`Attempt: ${timestampStr}  |  Score: ${earnedMarks.toFixed(2)} / ${totalMarks.toFixed(2)} (${Math.round((earnedMarks / totalMarks) * 100)}%)  |  Status: ${passed ? 'PASSED' : 'FAILED'}`, margin + 4, y + 18);
+            y += 26;
+
+            // Render each of the 5 questions faced
+            activeQuestions.forEach((q, idx) => {
+                const userChoiceIdx = selectedAnswers[q.id];
+                const isCorrect = userChoiceIdx === q.correctAnswer;
+                const statusText = userChoiceIdx === undefined
+                    ? 'UNANSWERED (0/4)'
+                    : isCorrect
+                        ? 'CORRECT (4/4)'
+                        : 'INCORRECT (0/4)';
+
+                if (y + 38 > pageHeight - 14) {
+                    doc.addPage();
+                    y = 14;
+                }
+
+                // English/Code Question Strip
+                doc.setFillColor(241, 245, 249);
+                doc.setDrawColor(203, 213, 225);
+                doc.rect(margin, y, contentWidth, 7.5, 'FD');
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(9.5);
+                doc.setTextColor(15, 23, 42);
+                doc.text(`Question ${idx + 1} of ${activeQuestions.length}  |  ${q.moduleTagEn}`, margin + 3, y + 5);
+
+                const statusColor = userChoiceIdx === undefined ? [180, 83, 9] : isCorrect ? [4, 120, 87] : [185, 28, 28];
+                doc.setTextColor(statusColor[0], statusColor[1], statusColor[2]);
+                doc.text(statusText, pageWidth - margin - 3, y + 5, { align: 'right' });
+                y += 9.5;
+
+                // Sinhala Question Prompt
+                addUnicodeBlockToPdf(q.questionText, contentWidth, {
+                    fontSizePx: 23,
+                    fontWeight: '700',
+                    color: '#0f172a',
+                    paddingPx: 4
+                });
+
+                // Sinhala Case Study Box
+                addUnicodeBlockToPdf(`සිද්ධි අධ්‍යයනය: ${q.scenario}`, contentWidth, {
+                    fontSizePx: 20,
+                    fontWeight: '400',
+                    color: '#334155',
+                    bgColor: '#f8fafc',
+                    borderColor: '#93c5fd',
+                    paddingPx: 14
+                });
+
+                // Sinhala Options A-D
+                q.options.forEach((opt, oIdx) => {
+                    const isThisCorrect = oIdx === q.correctAnswer;
+                    const isThisSelected = oIdx === userChoiceIdx;
+                    let badge = '';
+                    let optColor = '#1e293b';
+                    let optWeight = '400';
+
+                    if (isThisCorrect && isThisSelected) {
+                        badge = '  [නිවැරදි පිළිතුර - ඔබේ තේරීම / Correct]';
+                        optColor = '#047857';
+                        optWeight = '700';
+                    } else if (isThisCorrect) {
+                        badge = '  [නිවැරදි පිළිතුර / Correct Answer]';
+                        optColor = '#047857';
+                        optWeight = '700';
+                    } else if (isThisSelected) {
+                        badge = '  [ඔබේ තේරීම - වැරදියි / Your Selection]';
+                        optColor = '#b91c1c';
+                        optWeight = '700';
+                    }
+
+                    addUnicodeBlockToPdf(`${letters[oIdx]}. ${opt}${badge}`, contentWidth, {
+                        fontSizePx: 20.5,
+                        fontWeight: optWeight,
+                        color: optColor,
+                        paddingPx: 5
+                    });
+                });
+
+                // Sinhala Rationale Callout
+                if (q.rationale) {
+                    addUnicodeBlockToPdf(`පැහැදිලි කිරීම (Rationale): ${q.rationale}`, contentWidth, {
+                        fontSizePx: 20,
+                        fontWeight: '500',
+                        color: '#1e3a8a',
+                        bgColor: '#eff6ff',
+                        borderColor: '#93c5fd',
+                        paddingPx: 13
+                    });
+                }
+
+                y += 3;
+            });
+
+            // Footer page numbers
+            const totalPages = doc.internal.getNumberOfPages();
+            for (let p = 1; p <= totalPages; p++) {
+                doc.setPage(p);
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(8.5);
+                doc.setTextColor(100, 116, 139);
+                doc.text(`OBISL Campus • Certificate Level Practice Mock Exam (Sinhala)   |   Page ${p} of ${totalPages}`, pageWidth / 2, pageHeight - 7, { align: 'center' });
+            }
+
+            doc.save(`OBISL-Modules1-4-Sinhala-Exam-Review-${new Date().toISOString().slice(0, 10)}.pdf`);
+        }
+
+        function resetToInitial() {
+            clearInterval(timerInterval);
+            timerSeconds = 15 * 60;
+            selectedAnswers = {};
+            activeQuestions = [];
+            currentQuestionIndex = 0;
+            updateTimerDisplay();
+            showStep(1);
+        }
+
+        // Expose handlers globally
+        window.resetToInitial = resetToInitial;
+        window.startExamDirectly = startExamDirectly;
+        window.handleNextClick = handleNextClick;
+        window.confirmSkipAndProceed = confirmSkipAndProceed;
+        window.handleFinalSubmissionClick = handleFinalSubmissionClick;
+        window.confirmFinalSubmission = confirmFinalSubmission;
+        window.selectOption = selectOption;
+        window.clearChoice = clearChoice;
+        window.openModal = openModal;
+        window.closeModal = closeModal;
+        window.triggerCancelAttemptModal = triggerCancelAttemptModal;
+        window.triggerViolationModal = triggerViolationModal;
+        window.confirmCancellation = confirmCancellation;
+        window.downloadExamReview = downloadExamReview;
+
+        window.onload = function() {
+            showStep(1);
+        };
+    </script>
+</body>
+</html>
